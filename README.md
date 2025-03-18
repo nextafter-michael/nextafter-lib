@@ -8,7 +8,6 @@ NextAfter front-end development library
     import { Popup, onExitIntent } from 'https://cdn.jsdelivr.net/gh/nextafter-michael/nextafter-lib@latest/dist/index.esm.js';
     import NextAfter from 'https://cdn.jsdelivr.net/gh/nextafter-michael/nextafter-lib@latest/dist/index.esm.js';
 
-    
 
     const popup1 = new NextAfter.Popup();
     popup1.show();
@@ -17,7 +16,7 @@ NextAfter front-end development library
     onExitIntent((popup) => {
         popup.show();
     }, 5000, popup2);
+
+    customElements.define('typing-text', NextAfter.TypingText);
 </script>
 ```
-
-## How to compile and build
