@@ -1,0 +1,13 @@
+{
+  "name": "nextafter-lin",
+  "version": "0.1.0",
+  "author": "NextAfter",
+  "scripts": {
+    "build": "webpack"
+  },
+  "files": [ "dist" ],
+  "devDependencies": {
+    "webpack": "^5.x.x",
+    "webpack-cli": "^5.x.x"
+  }
+}
