@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const fs = require('fs');
 
 module.exports = () => {
     const env = dotenv.config().parsed;
@@ -8,6 +9,36 @@ module.exports = () => {
         prev[`process.env.${next}`] = JSON.stringify(env[next]);
         return prev;
     }, {});
+
+    const getEntryPoints = (directory) => {
+        const files = fs.readdirSync(directory).filter((file) => file.endsWith('.js'));
+        const entries = files.reduce((acc, file) => {
+            const name = path.basename(file, '.js');
+            acc[name] = path.join(directory, file);
+            return acc;
+        }, {});
+        return entries;
+    };
+
+    const webpackEntries = [];
+    const srcSubdirectories = fs.readdirSync(path.resolve(__dirname, 'src')).filter((file) => fs.statSync(path.join(__dirname, 'src', file)).isDirectory());
+    srcSubdirectories.forEach((subdir) => {
+        const subdirPath = path.resolve(__dirname, 'src', subdir);
+        const entries = getEntryPoints(subdirPath);
+        const webpackEntry = {
+            entry: entries,
+            output: {
+                path: path.resolve(__dirname, 'dist', subdir),
+                filename: '[name].js',
+                library: '[name]',
+                libraryTarget: 'umd',
+                globalObject: 'this',
+            },
+            mode: 'production',
+            plugins: [ new webpack.DefinePlugin(envKeys) ],
+        };
+        webpackEntries.push(webpackEntry);
+    });
 
     return [
         {
@@ -35,5 +66,6 @@ module.exports = () => {
             },
             plugins: [ new webpack.DefinePlugin(envKeys) ],
         },
+        ...webpackEntries,
     ];
 };

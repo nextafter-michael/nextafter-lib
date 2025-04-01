@@ -1,6 +1,8 @@
 # nextafter-lib
 NextAfter front-end development library
 
+[![](https://data.jsdelivr.com/v1/package/gh/nextafter-michael/nextafter-lib/badge?style=rounded)](https://www.jsdelivr.com/package/gh/nextafter-michael/nextafter-lib)
+
 
 ## Example Usage
 ```html
