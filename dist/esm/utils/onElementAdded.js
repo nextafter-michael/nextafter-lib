@@ -1,0 +1,1 @@
+var e={d:(o,r)=>{for(var a in r)e.o(r,a)&&!e.o(o,a)&&Object.defineProperty(o,a,{enumerable:!0,get:r[a]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o)},o={};e.d(o,{A:()=>r});const r={someFunction:()=>{console.log("Module 1 function")},someVariable:"Module 1 variable"};var a=o.A;export{a as default};

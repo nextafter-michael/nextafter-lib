@@ -25,14 +25,29 @@ module.exports = () => {
     srcSubdirectories.forEach((subdir) => {
         const subdirPath = path.resolve(__dirname, 'src', subdir);
         const entries = getEntryPoints(subdirPath);
-        const webpackEntry = {
+        let webpackEntry;
+        webpackEntry = {
             entry: entries,
             output: {
-                path: path.resolve(__dirname, 'dist', subdir),
+                path: path.resolve(__dirname, 'dist', 'umd', subdir),
                 filename: '[name].js',
                 library: '[name]',
                 libraryTarget: 'umd',
                 globalObject: 'this',
+            },
+            mode: 'production',
+            plugins: [ new webpack.DefinePlugin(envKeys) ],
+        };
+        webpackEntries.push(webpackEntry);
+        webpackEntry = {
+            entry: entries,
+            output: {
+                path: path.resolve(__dirname, 'dist', 'esm', subdir),
+                filename: '[name].js',
+                libraryTarget: 'module',
+            },
+            experiments: {
+                outputModule: true,
             },
             mode: 'production',
             plugins: [ new webpack.DefinePlugin(envKeys) ],
@@ -58,6 +73,31 @@ module.exports = () => {
             output: {
                 path: path.resolve(__dirname, 'dist'),
                 filename: 'index.esm.js',
+                libraryTarget: 'module',
+            },
+            mode: 'production',
+            experiments: {
+                outputModule: true,
+            },
+            plugins: [ new webpack.DefinePlugin(envKeys) ],
+        },
+        {
+            entry: './src/index.js',
+            output: {
+                path: path.resolve(__dirname, 'dist', 'umd'),
+                filename: 'index.js',
+                library: env.LIBRARY_NAME,
+                libraryTarget: 'umd',
+                globalObject: 'this',
+            },
+            mode: 'production',
+            plugins: [ new webpack.DefinePlugin(envKeys) ],
+        },
+        {
+            entry: './src/index.js',
+            output: {
+                path: path.resolve(__dirname, 'dist', 'esm'),
+                filename: 'index.js',
                 libraryTarget: 'module',
             },
             mode: 'production',
