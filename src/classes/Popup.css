@@ -1,0 +1,94 @@
+@import '../css/nextafter-default.css';
+
+.NextAfterPopup {
+  padding: 0;
+  color: var(--popup-fgColor);
+  background: var(--popup-bgColor);
+  max-width: var(--popup-maxWidth);
+  border-radius: var(--popup-cornerRadius);
+}
+dialog.NextAfterPopup { border: var(--popup-border) }
+dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
+.NextAfterPopup > div { position: relative }
+.NextAfterPopup h1,
+.NextAfterPopup h2,
+.NextAfterPopup h3,
+.NextAfterPopup h4,
+.NextAfterPopup h5,
+.NextAfterPopup h6,
+.NextAfterPopup ul,
+.NextAfterPopup li,
+.NextAfterPopup p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-block-end: 0.5rem;
+}
+.NextAfterPopup .NextAfterPopup__close-button {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.7;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: black;
+  background: transparent;
+  transition: opacity 0.15s ease;
+}
+.NextAfterPopup .NextAfterPopup__close-button:hover { opacity: 0.85 }
+.NextAfterPopup .NextAfterPopup__close-button:active { opacity: 1.0 }
+.NextAfterPopup .NextAfterPopup__content { padding: 1rem }
+.NextAfterPopup .NextAfterPopup__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1rem 0 0;
+}
+.NextAfterPopup a:has(button) { display: contents }
+.NextAfterPopup .NextAfterPopup__action-button {
+  display: block;
+  width: 100%;
+  max-width: 50%;
+  padding: 0.5rem;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out, scale 0.2s ease;
+}
+/* .NextAfterPopup .NextAfterPopup__action-button:hover { scale: 102% } */
+.NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button {
+  color: var(--popup-button-fgColor);
+  background-color: var(--popup-button-bgColor);
+  border: var(--popup-button-border);
+  border-radius: var(--popup-button-cornerRadius);
+}
+.NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button {
+  display: block;
+  width: 100%;
+  max-width: 50%;
+  padding: 0.5rem;
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--popup-button-fgColor2);
+  background-color: var(--popup-button-bgColor2);
+  border: var(--popup-button-border2);
+/*   outline-color: var(--popup-button-bgColor); */
+}
+.NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor), black 10%) }
+.NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button { background-color: color-mix(in srgb, var(--popup-button-bgColor2), black 10%) }
+@media only screen and (max-width: 480px) {
+  .NextAfterPopup .NextAfterPopup__actions {
+    display: flex;
+    flex-direction: column;
+  }
+  .NextAfterPopup .NextAfterPopup__action-button {
+    max-width: 100%;
+  }
+}

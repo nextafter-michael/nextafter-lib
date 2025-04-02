@@ -1,0 +1,22 @@
+.na-block { display: block }
+.na-flex { display: flex }
+.na-column {
+  display: flex;
+  flex-direction: column;
+}
+.na-row {
+  display: flex;
+  flex-direction: row;
+}
+.na-justify-center { justify-content: center }
+.na-justify-between { justify-content: between }
+.na-align-center { align-items: center }
+.na-text-center { text-align: center }
+.na-text-left { text-align: left }
+.na-text-right { text-align: right }
+.na-gap-0 { gap: 0 }
+.na-gap-1 { gap: 0.5rem }
+.na-gap-2 { gap: 1rem }
+.na-gap-3 { gap: 1.5rem }
+.na-gap-4 { gap: 2rem }
+.na-gap-5 { gap: 3rem }
