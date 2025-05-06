@@ -46,7 +46,7 @@ class Popup {
     function dismissPopup (target) {
       target = target || this || null;
       if (target) {
-        target instanceof NextAfterPopup && target.hide();
+        target instanceof Popup && target.hide();
         target instanceof HTMLDialogElement && target.close();
       }
     }
@@ -59,10 +59,10 @@ class Popup {
     return a;
   };
   constructor (existingDialogElement, options = {}) {
-    this.dialog = existingDialogElement || NextAfterPopup.createDialogElement();
-    this.config = { ...NextAfterPopup.defaultOptions, ...options };
-    this.content = { ...NextAfterPopup.defaultOptions.content, ...this.config.content };
-    this.actions = this.config.actions && this.config.actions.length > 0 ? this.config.actions : NextAfterPopup.defaultOptions.actions;
+    this.dialog = existingDialogElement || Popup.createDialogElement();
+    this.config = { ...Popup.defaultOptions, ...options };
+    this.content = { ...Popup.defaultOptions.content, ...this.config.content };
+    this.actions = this.config.actions && this.config.actions.length > 0 ? this.config.actions : Popup.defaultOptions.actions;
     this.dialog.innerHTML = `<div>
       <div class="na-column NextAfterPopup__content">
         <div class="na-block">
@@ -108,7 +108,7 @@ class Popup {
                         button.tabIndex = 0;
                         a.href = href;
                         if (typeof action === 'function') {
-                          button.addEventListener('click', (function handleNextAfterPopupActionButtonClick (event) {
+                          button.addEventListener('click', (function handlePopupActionButtonClick (event) {
                             action.call(this, event, this.dialog);
                           }).bind(this));
                         }
@@ -121,7 +121,7 @@ class Popup {
     };
     this.buttons = Array.from(this.content.actions.children);
     this.config.design = {
-      ...NextAfterPopup.defaultOptions.design,
+      ...Popup.defaultOptions.design,
       ...this.config.design
     };
     const sheet = new CSSStyleSheet(),
@@ -152,7 +152,7 @@ class Popup {
       }
     `);
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];    
-    this.dialog.insertAdjacentElement('beforeend', NextAfterPopup.createCloseButton.call(this, this.dialog));
+    this.dialog.insertAdjacentElement('beforeend', Popup.createCloseButton.call(this, this.dialog));
     !this.dialog.isConnected && document.body.appendChild(this.dialog); // append the <dialog> to the body if not already connected to DOM
     if (this.config.open === true) {
       this.dialog.showModal();
