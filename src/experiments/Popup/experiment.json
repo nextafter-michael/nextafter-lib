@@ -1,0 +1,19 @@
+{
+  "variants": [
+    {
+      "variant_name": "default",
+      "variant_id": 1,
+      "author": "System",
+      "version": "1.0.0",
+      "description": "",
+      "path": "Popup/default",
+      "files": [
+        "popup.js"
+      ],
+      "variables": {}
+    }
+  ],
+  "experiment_id": 0,
+  "experiment_name": "Popup",
+  "path": "Popup"
+}

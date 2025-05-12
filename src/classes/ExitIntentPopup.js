@@ -6,12 +6,12 @@ class ExitIntentPopup extends Popup {
         ...Popup.defaultOptions,
         exitIntentDelaySeconds: 0,
     };
-    constructor (options) {
+    constructor (existingElement, options) {
         const exitIntentDelaySeconds = options.exitIntentDelaySeconds || 0;
         if (exitIntentDelaySeconds < 0)
             throw new Error('armDelaySeconds must be a positive number.');
         try {
-            super(null, options);
+            super(existingElement || null, options);
         } catch (error) {
             console.error("Error creating Popup:", error);
             throw error;

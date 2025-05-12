@@ -1,0 +1,19 @@
+{
+  "variants": [
+    {
+      "variant_name": "default",
+      "variant_id": 1,
+      "author": "NextAfter",
+      "version": "1.0.0",
+      "description": "",
+      "path": "ExitIntentPopup/default",
+      "files": [
+        "exitIntentPopup.js"
+      ],
+      "variables": {}
+    }
+  ],
+  "experiment_id": 1,
+  "experiment_name": "Exit Intent Popup",
+  "path": "ExitIntentPopup"
+}

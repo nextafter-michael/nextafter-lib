@@ -3,6 +3,14 @@ NextAfter front-end development library
 
 [![](https://data.jsdelivr.com/v1/package/gh/nextafter-michael/nextafter-lib/badge?style=rounded)](https://www.jsdelivr.com/package/gh/nextafter-michael/nextafter-lib)
 
+## Development
+
+Run `npm run build` to rebuild the library from the files in the _src_ directory. This will also update the JSON files that contain the metadata for experiments and experiment variants.
+
+Run `npm run test` to run the test.js file in headless mode and view the output in the console.
+
+You can clear the CDN cache [here](https://www.jsdelivr.com/tools/purge).
+
 
 ## Example Usage
 ```html

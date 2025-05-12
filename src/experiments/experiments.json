@@ -1,0 +1,30 @@
+{
+  "name": "Experiments",
+  "author": "NextAfter",
+  "version": "1.0.0",
+  "lastBuildDate": "2025-05-12T14:16:14.837Z",
+  "experiments": [
+    {
+      "id": 0,
+      "name": "Popup",
+      "variants": [
+        "default"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Exit Intent Popup",
+      "variants": [
+        "default"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Homepage Takeover",
+      "description": "",
+      "variants": [
+        "default"
+      ]
+    }
+  ]
+}

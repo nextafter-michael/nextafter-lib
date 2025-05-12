@@ -1,0 +1,22 @@
+{
+  "experiment_name": "Homepage Takeover",
+  "experiment_id": 3,
+  "author": "System",
+  "version": "1.0.0",
+  "description": "",
+  "path": "HomepageTakeover",
+  "variants": [
+    {
+      "variant_name": "default",
+      "variant_id": 1,
+      "author": "System",
+      "version": "1.0.0",
+      "description": "",
+      "path": "HomepageTakeover/default",
+      "files": [
+        "homepageTakeover.js"
+      ],
+      "variables": {}
+    }
+  ]
+}

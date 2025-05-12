@@ -3,6 +3,27 @@ const webpack = require("webpack");
 const dotenv = require("dotenv");
 const fs = require("fs");
 
+const resolveAliases = {
+  alias: {
+    '@experiments': path.resolve(__dirname, 'src/experiments'),
+    '@src': path.resolve(__dirname, 'src'),
+    '@classes': path.resolve(__dirname, 'src/classes'),
+    '@utils': path.resolve(__dirname, 'src/utils'),
+    '@dist': path.resolve(__dirname, 'dist'),
+  }
+};
+
+const cssModuleConfig = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+};
+
 module.exports = () => {
   const env = dotenv.config().parsed;
   const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -20,17 +41,6 @@ module.exports = () => {
       return acc;
     }, {});
     return entries;
-  };
-
-  const cssModuleConfig = {
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: ["style-loader", "css-loader"],
-        },
-      ],
-    },
   };
 
   const webpackEntries = [];
@@ -51,6 +61,9 @@ module.exports = () => {
       mode: "production",
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     };
     webpackEntries.push(webpackEntry);
     webpackEntry = {
@@ -66,6 +79,9 @@ module.exports = () => {
       mode: "production",
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     };
     webpackEntries.push(webpackEntry);
   });
@@ -83,6 +99,9 @@ module.exports = () => {
       mode: "production",
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     },
     {
       entry: "./src/index.js",
@@ -97,6 +116,9 @@ module.exports = () => {
       },
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     },
     {
       entry: "./src/index.js",
@@ -110,6 +132,9 @@ module.exports = () => {
       mode: "production",
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     },
     {
       entry: "./src/index.js",
@@ -124,6 +149,9 @@ module.exports = () => {
       },
       ...cssModuleConfig,
       plugins: [new webpack.DefinePlugin(envKeys)],
+      resolve: {
+        ...resolveAliases,
+      },
     },
     ...webpackEntries,
   ];
