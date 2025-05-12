@@ -31,6 +31,17 @@ module.exports = () => {
     return prev;
   }, {});
 
+  const output = {
+    esm: {
+      libraryTarget: "module",
+    },
+    umd: {
+      library: env.LIBRARY_NAME,
+      libraryTarget: "umd",
+      globalObject: "this",
+    },
+  };
+
   const getEntryPoints = (directory) => {
     const files = fs
       .readdirSync(directory)
@@ -54,9 +65,8 @@ module.exports = () => {
       output: {
         path: path.resolve(__dirname, "dist", "umd", subdir),
         filename: "[name].js",
+        ...output.umd,
         library: "[name]",
-        libraryTarget: "umd",
-        globalObject: "this",
       },
       mode: "production",
       ...cssModuleConfig,
@@ -71,7 +81,7 @@ module.exports = () => {
       output: {
         path: path.resolve(__dirname, "dist", "esm", subdir),
         filename: "[name].js",
-        libraryTarget: "module",
+        ...output.esm,
       },
       experiments: {
         outputModule: true,
@@ -86,15 +96,62 @@ module.exports = () => {
     webpackEntries.push(webpackEntry);
   });
 
+  const experimentsBaseDir = path.resolve(__dirname, "src", "experiments");
+  const experimentNames = fs.readdirSync(experimentsBaseDir)
+    .filter(file => fs.statSync(path.join(experimentsBaseDir, file)).isDirectory());
+
+  experimentNames.forEach((experimentName) => {
+    const experimentDir = path.join(experimentsBaseDir, experimentName);
+    const variantNames = fs.readdirSync(experimentDir)
+      .filter(file => fs.statSync(path.join(experimentDir, file)).isDirectory());
+
+    variantNames.forEach((variantName) => {
+      const variantDir = path.join(experimentDir, variantName);
+      const entries = getEntryPoints(variantDir); // getEntryPoints returns { filenameWithoutExt: fullpath }
+
+      if (Object.keys(entries).length > 0) {
+        // UMD entry for experiment variant
+        let umdWebpackEntry = {
+          entry: entries,
+          output: {
+            path: path.resolve(__dirname, "dist", "umd", "experiments", experimentName, variantName),
+            filename: "[name].js",
+            ...output.umd,
+            library: "[name]", // Uses the filename as library name
+          },
+          mode: "production",
+          ...cssModuleConfig,
+          plugins: [new webpack.DefinePlugin(envKeys)],
+          resolve: { ...resolveAliases },
+        };
+        webpackEntries.push(umdWebpackEntry);
+
+        // ESM entry for experiment variant
+        let esmWebpackEntry = {
+          entry: entries,
+          output: {
+            path: path.resolve(__dirname, "dist", "esm", "experiments", experimentName, variantName),
+            filename: "[name].js",
+            ...output.esm,
+          },
+          experiments: { outputModule: true },
+          mode: "production",
+          ...cssModuleConfig,
+          plugins: [new webpack.DefinePlugin(envKeys)],
+          resolve: { ...resolveAliases },
+        };
+        webpackEntries.push(esmWebpackEntry);
+      }
+    });
+  });
+
   return [
     {
       entry: "./src/index.js",
       output: {
         path: path.resolve(__dirname, "dist"),
         filename: "index.umd.js",
-        library: env.LIBRARY_NAME,
-        libraryTarget: "umd",
-        globalObject: "this",
+        ...output.umd,
       },
       mode: "production",
       ...cssModuleConfig,
@@ -108,7 +165,7 @@ module.exports = () => {
       output: {
         path: path.resolve(__dirname, "dist"),
         filename: "index.esm.js",
-        libraryTarget: "module",
+        ...output.esm,
       },
       mode: "production",
       experiments: {
@@ -125,9 +182,7 @@ module.exports = () => {
       output: {
         path: path.resolve(__dirname, "dist", "umd"),
         filename: "index.js",
-        library: env.LIBRARY_NAME,
-        libraryTarget: "umd",
-        globalObject: "this",
+        ...output.umd,
       },
       mode: "production",
       ...cssModuleConfig,
@@ -141,7 +196,7 @@ module.exports = () => {
       output: {
         path: path.resolve(__dirname, "dist", "esm"),
         filename: "index.js",
-        libraryTarget: "module",
+        ...output.esm,
       },
       mode: "production",
       experiments: {
