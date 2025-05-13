@@ -2,25 +2,30 @@
   "name": "Experiments",
   "author": "NextAfter",
   "version": "1.0.0",
-  "lastBuildDate": "2025-05-12T22:30:09.310Z",
+  "lastBuildDate": "2025-05-13T16:36:19.772Z",
   "experiments": [
     {
-      "id": 0,
-      "name": "Popup",
+      "id": 1,
+      "name": "Exit Intent Popup",
+      "path": "ExitIntentPopup",
+      "description": "",
       "variants": [
         "default"
       ]
     },
     {
-      "id": 1,
-      "name": "Exit Intent Popup",
+      "id": 2,
+      "name": "Homepage Takeover",
+      "path": "HomepageTakeover",
+      "description": "",
       "variants": [
         "default"
       ]
     },
     {
       "id": 3,
-      "name": "Homepage Takeover",
+      "name": "Popup",
+      "path": "Popup",
       "description": "",
       "variants": [
         "default"

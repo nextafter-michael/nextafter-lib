@@ -49,6 +49,7 @@ const defaultExperiment = {
     path: '', // path to the experiment folder
     variants: [], // list of variants names (directories) in the experiment folder
 };
+
 const defaultVariant = {
     variant_name: "Variant",
     variant_id: 0,
@@ -136,8 +137,7 @@ function updateExperimentJson (experimentPath) {
     }
 
     const processedJsonVariants = [];
-    let maxExistingVariantId = 0;
-
+    let maxExistingVariantId = 0; // Track the maximum variant_id from JSON entries
     (experiment.variants || []).forEach((variantFromJson) => {
         if (typeof variantFromJson !== 'object' || variantFromJson === null || !variantFromJson.variant_name) {
             console.log(`Skipping invalid variant entry in ${experimentJsonPath}:`, JSON.stringify(variantFromJson));
@@ -155,9 +155,8 @@ function updateExperimentJson (experimentPath) {
         currentVariant.variant_name = variantFromJson.variant_name;
 
         if (typeof currentVariant.variant_id === 'number') {
-            if (currentVariant.variant_id > maxExistingVariantId) {
+            if (currentVariant.variant_id > maxExistingVariantId)
                 maxExistingVariantId = currentVariant.variant_id;
-            }
         } else {
             delete currentVariant.variant_id;
         }
@@ -175,10 +174,7 @@ function updateExperimentJson (experimentPath) {
     });
 
     let nextVariantIdCounter = maxExistingVariantId;
-    const getNextVariantId = () => {
-        nextVariantIdCounter++;
-        return nextVariantIdCounter;
-    };
+    const getNextVariantId = () => ++nextVariantIdCounter;
 
     for (const dirName of variantDirNamesOnDisk) {
         const variantAbsolutePath = path.join(experimentPath, dirName);
@@ -188,16 +184,14 @@ function updateExperimentJson (experimentPath) {
         const detectedVariables = detectVariablesFromFiles(variantAbsolutePath, ...variantFiles);
 
         let existingProcessedVariant = processedJsonVariants.find(v => v.path === variantCanonicalPath || v.variant_name === dirName);
-
         if (existingProcessedVariant) {
             console.log(`Updating data for existing variant directory: '${dirName}'`);
             existingProcessedVariant.variant_name = dirName;
             existingProcessedVariant.path = variantCanonicalPath;
             existingProcessedVariant.files = variantFiles;
             existingProcessedVariant.variables = detectedVariables;
-            if (typeof existingProcessedVariant.variant_id !== 'number') {
+            if (typeof existingProcessedVariant.variant_id !== 'number')
                 existingProcessedVariant.variant_id = getNextVariantId();
-            }
             finalVariantsList.push(existingProcessedVariant);
         } else {
             console.log(`Adding new variant for directory on disk: '${dirName}'`);
@@ -264,6 +258,9 @@ function updateExperimentsJson () {
                 experimentIds.add(experiment.experiment_id);
             }
 
+            const experimentPath = path.relative(experimentsDir, experimentDirectoryPath).replace(/\\/g, '/');
+            experiment.path = experimentPath; // Update the path to be relative to the experiments directory
+
             // Check if the experiment already exists in the experiments list
             const existingExperimentIndex = experiments.experiments.findIndex((exp) => exp.id === experiment.experiment_id);
             if (existingExperimentIndex !== -1) {
@@ -271,6 +268,7 @@ function updateExperimentsJson () {
                 experiments.experiments[existingExperimentIndex] = {
                     id: experiment.experiment_id,
                     name: experiment.experiment_name,
+                    path: experiment.path,
                     description: experiment.description,
                     variants: experiment.variants.map((variant) => variant.variant_name),
                 };
@@ -279,6 +277,7 @@ function updateExperimentsJson () {
                 experiments.experiments.push({
                     id: experiment.experiment_id,
                     name: experiment.experiment_name,
+                    path: experiment.path,
                     description: experiment.description,
                     variants: experiment.variants.map((variant) => variant.variant_name),
                 });

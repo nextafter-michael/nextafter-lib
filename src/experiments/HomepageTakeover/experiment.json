@@ -1,7 +1,7 @@
 {
   "experiment_name": "Homepage Takeover",
-  "experiment_id": 3,
-  "author": "System",
+  "experiment_id": 2,
+  "author": "NextAfter - Michael",
   "version": "1.0.0",
   "description": "",
   "path": "HomepageTakeover",
@@ -9,7 +9,7 @@
     {
       "variant_name": "default",
       "variant_id": 1,
-      "author": "System",
+      "author": "NextAfter - Michael",
       "version": "1.0.0",
       "description": "",
       "path": "HomepageTakeover/default",

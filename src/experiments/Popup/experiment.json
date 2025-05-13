@@ -1,9 +1,15 @@
 {
+  "experiment_name": "Popup",
+  "experiment_id": 3,
+  "author": "NextAfter - Michael",
+  "version": "1.0.0",
+  "description": "",
+  "path": "Popup",
   "variants": [
     {
       "variant_name": "default",
       "variant_id": 1,
-      "author": "System",
+      "author": "NextAfter - Michael",
       "version": "1.0.0",
       "description": "",
       "path": "Popup/default",
@@ -12,8 +18,5 @@
       ],
       "variables": {}
     }
-  ],
-  "experiment_id": 0,
-  "experiment_name": "Popup",
-  "path": "Popup"
+  ]
 }
