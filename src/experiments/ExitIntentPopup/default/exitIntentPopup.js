@@ -9,6 +9,7 @@ const EXPERIMENT_VARIABLES = [
         type: 'number',
         unit: 'seconds',
         value: 0,
+        description: "The delay in seconds before the exit intent popup is shown. This is useful to prevent showing the popup immediately when the user moves their mouse towards the top of the screen.",
     },
 ];
 

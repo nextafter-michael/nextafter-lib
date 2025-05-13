@@ -4,14 +4,14 @@ const EXPERIMENT_VARIABLES = [
     {
         name: 'Popup Heading HTML', // {{Popup Heading HTML}}
         mapsTo: 'content.headingHTML',
-        type: 'text:long',
+        type: 'text:long|required',
         unit: null,
         value: '<h3>This is the heading HTML</h3>',
     },
     {
         name: 'Popup Body HTML',
         mapsTo: 'content.bodyHTML',
-        type: 'text:long',
+        type: 'text:long|required',
         unit: null,
         value: `<p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -23,6 +23,7 @@ const EXPERIMENT_VARIABLES = [
         type: 'text:long',
         unit: null,
         value: '<p>This is the footer HTML</p>',
+        description: "This text appears just above the buttons in the popup.",
     },
     {
         name: 'Popup Actions',
@@ -48,6 +49,7 @@ const EXPERIMENT_VARIABLES = [
                         type: 'text:url',
                         unit: null,
                         value: 'https://donate.example.com/?src=popup',
+                        desciption: "The link to open when the button is clicked. Use 'javascript:void(0)' to close the popup without any action.",
                     },
                 ]
             },
@@ -71,6 +73,7 @@ const EXPERIMENT_VARIABLES = [
                         type: 'text:url',
                         unit: null,
                         value: 'javascript:void(0)',
+                        desciption: "The link to open when the button is clicked. Use 'javascript:void(0)' to close the popup without any action.",
                     },
                 ]
             }

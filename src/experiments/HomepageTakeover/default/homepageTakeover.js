@@ -7,6 +7,7 @@ const EXPERIMENT_VARIABLES = [
         type: "text:url",
         unit: null,
         value: "https://nextafter.com/",
+        description: "The URL of the homepage where the redirect will occur.",
     },
     {
         name: "Destination URL",
@@ -14,6 +15,7 @@ const EXPERIMENT_VARIABLES = [
         type: "text:url",
         unit: null,
         value: "https://nextafter.com/",
+        description: "The URL to which the user will be redirected.",
     },
     {
         name: "src Param Value",
@@ -21,6 +23,7 @@ const EXPERIMENT_VARIABLES = [
         type: "text",
         unit: null,
         value: "redirect",
+        description: "The value of the src parameter to be added to the destination URL.",
     },
     {
         name: "Redirect Cooldown Days",
@@ -28,6 +31,7 @@ const EXPERIMENT_VARIABLES = [
         type: "number",
         unit: null,
         value: 7,
+        description: "The number of days to wait before redirecting the user again.",
     },
     {
         name: "Cookie Name",
@@ -35,6 +39,7 @@ const EXPERIMENT_VARIABLES = [
         type: "text",
         unit: null,
         value: "homepageTakeoverRedirected",
+        description: "The name of the cookie to be set for the redirect.",
     },
     {
         name: "Button Text",
@@ -42,6 +47,7 @@ const EXPERIMENT_VARIABLES = [
         type: "text",
         unit: null,
         value: "Go Back",
+        description: "The text to be displayed on the back button on the redirected page.",
     },
     {
         name: "Design",
@@ -55,6 +61,7 @@ const EXPERIMENT_VARIABLES = [
                 type: "text",
                 unit: "px",
                 value: 16,
+                // description: "The space from the top of the page to the button.",
             },
             {
                 group_index: 1,
@@ -63,6 +70,7 @@ const EXPERIMENT_VARIABLES = [
                 type: "text",
                 unit: "px",
                 value: 16,
+                // description: "The space from the left of the page to the button.",
             },
             {
                 group_index: 2,
