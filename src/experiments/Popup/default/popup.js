@@ -77,95 +77,114 @@ const EXPERIMENT_VARIABLES = [
         ],
     },
     {
-        name: 'Popup Width',
-        mapsTo: 'design.width',
-        type: 'number',
-        unit: 'px',
-        value: 640,
-    },
-    {
-        name: 'Popup Backdrop Color',
-        mapsTo: 'design.popupBackdrop',
-        type: 'text',
-        unit: 'color',
-        value: 'rgba(0 0 0 / 5%)',
-    },
-    {
-        name: 'Popup Foreground Color',
-        mapsTo: 'design.popupForegroundColor',
-        type: 'text',
-        unit: 'color',
-        value: 'black',
-    },
-    {
-        name: 'Popup Background Color',
-        mapsTo: 'design.popupBackgroundColor',
-        type: 'text',
-        unit: 'color',
-        value: 'white',
-    },
-    {
-        name: 'Popup Border Color',
-        mapsTo: 'design.popupBorder',
-        type: 'text',
-        unit: null,
-        value: 'none',
-    },
-    {
-        name: 'Popup Border Alternate Color',
-        mapsTo: 'design.popupBorderAlternate',
-        type: 'text',
-        unit: null,
-        value: 'none',
-    },
-    {
-        name: 'Popup Border Radius',
-        mapsTo: 'design.popupBorderRadius',
-        type: 'number',
-        unit: 'rem',
-        value: 1,
-    },
-    {
-        name: 'Popup Button Foreground Color (CTA)',
-        mapsTo: 'design.popupButtonForegroundColor',
-        type: 'text',
-        unit: 'color',
-        value: 'black', // used for the first CTA button in the popup
-    },
-    {
-        name: 'Popup Button Background Color (CTA)',
-        mapsTo: 'design.popupButtonBackgroundColor',
-        type: 'text',
-        unit: 'color',
-        value: '#f5c635', // used for the first CTA button in the popup
-    },
-    {
-        name: 'Popup Button Border (CTA)',
-        mapsTo: 'design.popupButtonBorder',
-        type: 'text',
-        unit: 'color',
-        value: 'none', // used for the first CTA button in the popup
-    },
-    {
-        name: 'Popup Button Foreground Color (Other)',
-        mapsTo: 'design.popupButtonForegroundColor2',
-        type: 'text',
-        unit: 'color',
-        value: 'white', // used for the other CTA buttons in the popup
-    },
-    {
-        name: 'Popup Button Background Color (Other)',
-        mapsTo: 'design.popupButtonBackgroundColor2',
-        type: 'text',
-        unit: 'color',
-        value: '#000000', // used for the other CTA buttons in the popup
-    },
-    {
-        name: 'Popup Button Border (Other)',
-        mapsTo: 'design.popupButtonBorder2',
-        type: 'text',
-        unit: null,
-        value: '#000000', // used for the other CTA buttons in the popup
+        name: 'Design',
+        type: 'group:collapsed',
+        items: [
+            {
+                group_index: 0,
+                name: 'Popup Width',
+                mapsTo: 'design.width',
+                type: 'number',
+                unit: 'px',
+                value: 640,
+            },
+            {
+                group_index: 1,
+                name: 'Popup Backdrop Color',
+                mapsTo: 'design.popupBackdrop',
+                type: 'text',
+                unit: 'color',
+                value: 'rgba(0 0 0 / 5%)',
+            },
+            {
+                group_index: 2,
+                name: 'Popup Foreground Color',
+                mapsTo: 'design.popupForegroundColor',
+                type: 'text',
+                unit: 'color',
+                value: 'black',
+            },
+            {
+                group_index: 3,
+                name: 'Popup Background Color',
+                mapsTo: 'design.popupBackgroundColor',
+                type: 'text',
+                unit: 'color',
+                value: 'white',
+            },
+            {
+                group_index: 4,
+                name: 'Popup Border Color',
+                mapsTo: 'design.popupBorder',
+                type: 'text',
+                unit: null,
+                value: 'none',
+            },
+            {
+                group_index: 5,
+                name: 'Popup Border Alternate Color',
+                mapsTo: 'design.popupBorderAlternate',
+                type: 'text',
+                unit: null,
+                value: 'none',
+            },
+            {
+                group_index: 6,
+                name: 'Popup Border Radius',
+                mapsTo: 'design.popupBorderRadius',
+                type: 'number',
+                unit: 'rem',
+                value: 1,
+            },
+            {
+                group_index: 7,
+                name: 'Popup Button Foreground Color (CTA)',
+                mapsTo: 'design.popupButtonForegroundColor',
+                type: 'text',
+                unit: 'color',
+                value: 'black', // used for the first CTA button in the popup
+            },
+            {
+                group_index: 8,
+                name: 'Popup Button Background Color (CTA)',
+                mapsTo: 'design.popupButtonBackgroundColor',
+                type: 'text',
+                unit: 'color',
+                value: '#f5c635', // used for the first CTA button in the popup
+            },
+            {
+                group_index: 9,
+                name: 'Popup Button Border (CTA)',
+                mapsTo: 'design.popupButtonBorder',
+                type: 'text',
+                unit: 'color',
+                value: 'none', // used for the first CTA button in the popup
+            },
+            {
+                group_index: 10,
+                name: 'Popup Button Foreground Color (Other)',
+                mapsTo: 'design.popupButtonForegroundColor2',
+                type: 'text',
+                unit: 'color',
+                value: 'white', // used for the other CTA buttons in the popup
+            },
+            {
+                group_index: 11,
+                name: 'Popup Button Background Color (Other)',
+                mapsTo: 'design.popupButtonBackgroundColor2',
+                type: 'text',
+                unit: 'color',
+                value: '#000000', // used for the other CTA buttons in the popup
+            },
+            {
+                group_index: 12,
+                name: 'Popup Button Border (Other)',
+                mapsTo: 'design.popupButtonBorder2',
+                type: 'text',
+                unit: null,
+                value: '#000000', // used for the other CTA buttons in the popup
+            }
+        ]
     }
 ];
 

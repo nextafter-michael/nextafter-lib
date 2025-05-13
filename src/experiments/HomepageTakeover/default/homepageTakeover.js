@@ -44,9 +44,9 @@ const EXPERIMENT_VARIABLES = [
         value: "Go Back",
     },
     {
-        name: "Button Design",
+        name: "Design",
         mapsTo: "buttonDesign",
-        type: "group",
+        type: "group:collapsed",
         items: [
             {
                 group_index: 0,
