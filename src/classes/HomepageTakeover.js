@@ -1,6 +1,6 @@
 class HomepageTakeoverButton {
   static defaultOptions = {
-    buttonText: 'Go Back',
+    buttonTextHTMLHTML: 'Go Back',
     href: 'javascript:void(0)',
     design: {
       top: '1rem',
@@ -52,7 +52,7 @@ class HomepageTakeoverButton {
 
     const button = document.createElement('button');
     button.classList.add('homepage-takeover-button');
-    button.textContent = options.buttonText;
+    button.innerHTML = options.buttonTextHTML;
     Object.entries(designOptions)
       .filter(([key]) => key !== 'top' && key !== 'left')
       .forEach(([key, value]) => {
@@ -75,7 +75,7 @@ class HomepageTakeover {
     srcParamValue: 'redirect', // Value for the 'src' query parameter
     redirectCooldownDays: 7, // Cooldown period in days
     cookieName: "homepageTakeoverRedirected", // Name of the cookie to store the redirect timestamp
-    buttonText: "Go Back", // Text for the button
+    buttonTextHTML: "Go Back", // Text for the button
     buttonDesign: HomepageTakeoverButton.defaultOptions.design // Design options for the button
   }
   static executeRedirect = function (destinationUrl) {
@@ -99,7 +99,7 @@ class HomepageTakeover {
    * @param {string} options.srcParamValue - The value for the 'src' query parameter (default: 'redirect')
    * @param {number} options.redirectCooldownDays - The cooldown period in days (default: 7)
    * @param {string} options.cookieName - The name of the cookie to store the redirect timestamp (default: "homepageTakeoverRedirected")
-   * @param {string} options.buttonText - The text for the button (default: "Go Back")
+   * @param {string} options.buttonTextHTML - The text for the button (default: "Go Back")
    * @returns 
    */
   constructor (options = {}) {
@@ -184,7 +184,7 @@ class HomepageTakeover {
 
     const decodedFromUrl = decodeURIComponent(fromUrlParam);
     new HomepageTakeoverButton({
-      buttonText: this.options.buttonText,
+      buttonTextHTML: this.options.buttonTextHTML,
       href: decodedFromUrl,
       design: this.options.buttonDesign,
     });
@@ -197,7 +197,7 @@ class HomepageTakeover {
   srcParamValue: 'redirect', // Value for the 'src' query parameter
   redirectCooldownDays: 7, // Cooldown period in days
   cookieName: "homepageTakeoverRedirected", // Name of the cookie to store the redirect timestamp
-  buttonText: "Go Back", // Text for the button
+  buttonTextHTML: "Go Back", // Text for the button
   buttonDesign: {
     top: '1rem',
     left: '1rem',

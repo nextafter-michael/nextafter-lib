@@ -54,12 +54,12 @@ const setNestedProperty = (obj, path, value) => {
 
 
 /**
- * handlebarsVariablesToConfigObject - Convert handlebars variables to a configuration object.
- * @param {Array} handlebarsVariables - The handlebars variables to convert.
+ * variablesToConfigObject - Convert handlebars variables to a configuration object.
+ * @param {Array} variables - The handlebars variables to convert.
  * @param {Object} defaultConfigObject - The default configuration object to merge with.
  * @return {Object} - The configuration object.
  */
-export function handlebarsVariablesToConfigObject(handlebarsVariables, defaultConfigObject) {
+export function variablesToConfigObject(variables, defaultConfigObject) {
     // Create a copy of the default configuration object to avoid mutating the original
     const configObject = { ...defaultConfigObject };
 
@@ -119,9 +119,7 @@ export function handlebarsVariablesToConfigObject(handlebarsVariables, defaultCo
     };
 
     // Iterate over all variables and process them
-    handlebarsVariables.forEach((variable) => {
-        processVariable(variable);
-    });
+    variables.forEach((variable) => processVariable(variable));
 
     // Return the final configuration object
     return configObject;
@@ -129,5 +127,5 @@ export function handlebarsVariablesToConfigObject(handlebarsVariables, defaultCo
 
 
 export default {
-    handlebarsVariablesToConfigObject
+    variablesToConfigObject
 };

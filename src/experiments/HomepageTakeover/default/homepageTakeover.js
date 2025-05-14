@@ -42,9 +42,9 @@ const EXPERIMENT_VARIABLES = [
         description: "The name of the cookie to be set for the redirect.",
     },
     {
-        name: "Button Text",
-        mapsTo: "buttonText",
-        type: "text",
+        name: "Button Text HTML",
+        mapsTo: "buttonTextHTML",
+        type: "text:rich",
         unit: null,
         value: "Go Back",
         description: "The text to be displayed on the back button on the redirected page.",

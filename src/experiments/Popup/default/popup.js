@@ -4,14 +4,14 @@ const EXPERIMENT_VARIABLES = [
     {
         name: 'Popup Heading HTML', // {{Popup Heading HTML}}
         mapsTo: 'content.headingHTML',
-        type: 'text:long|required',
+        type: 'text:rich|required',
         unit: null,
         value: '<h3>This is the heading HTML</h3>',
     },
     {
         name: 'Popup Body HTML',
         mapsTo: 'content.bodyHTML',
-        type: 'text:long|required',
+        type: 'text:rich|required',
         unit: null,
         value: `<p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -20,9 +20,9 @@ const EXPERIMENT_VARIABLES = [
     {
         name: 'Popup Footer HTML',
         mapsTo: 'content.footerHTML',
-        type: 'text:long',
+        type: 'text:rich',
         unit: null,
-        value: '<p>This is the footer HTML</p>',
+        value: '',
         description: "This text appears just above the buttons in the popup.",
     },
     {
@@ -38,7 +38,7 @@ const EXPERIMENT_VARIABLES = [
                         group_index: 0,
                         name: 'Popup Action 1 Text',
                         mapsTo: 'actions[0].textHTML',
-                        type: 'text',
+                        type: 'text:rich|required',
                         unit: null,
                         value: 'Yes, I agree!',
                     },
@@ -62,7 +62,7 @@ const EXPERIMENT_VARIABLES = [
                         group_index: 0,
                         name: 'Popup Action 2 Text',
                         mapsTo: 'actions[1].textHTML',
-                        type: 'text',
+                        type: 'text:rich|required',
                         unit: null,
                         value: 'No, I do not agree.',
                     },
