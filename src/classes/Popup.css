@@ -4,7 +4,9 @@
   padding: 0;
   color: var(--popup-fgColor);
   background: var(--popup-bgColor);
-  max-width: var(--popup-maxWidth);
+  width: calc(100% * 2 / 3);
+  min-width: var(--popup-minWidth, 360px);
+  max-width: var(--popup-maxWidth, 640px);
   border-radius: var(--popup-cornerRadius);
 }
 dialog.NextAfterPopup { border: var(--popup-border) }
@@ -81,8 +83,14 @@ dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
   border: var(--popup-button-border2);
 /*   outline-color: var(--popup-button-bgColor); */
 }
-.NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor), black 10%) }
-.NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button { background-color: color-mix(in srgb, var(--popup-button-bgColor2), black 10%) }
+@supports (color-mix(in srgb, var(--popup-button-bgColor), black 10%)) {
+  .NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor), black 10%) }
+  .NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor2), black 10%) }
+}
+@supports (not color-mix(in srgb, var(--popup-button-bgColor), black 10%)) and (filter: brightness(0.9)) {
+  .NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
+  .NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
+}
 @media only screen and (max-width: 480px) {
   .NextAfterPopup .NextAfterPopup__actions {
     display: flex;

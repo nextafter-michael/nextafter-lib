@@ -97,7 +97,7 @@ const EXPERIMENT_VARIABLES = [
                 mapsTo: 'design.popupBackdrop',
                 type: 'text',
                 unit: 'color',
-                value: 'rgba(0 0 0 / 5%)',
+                value: 'rgba(0 0 0 / 30%)',
             },
             {
                 group_index: 2,
