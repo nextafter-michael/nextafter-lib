@@ -7,7 +7,7 @@ class ExitIntentPopup extends Popup {
         exitIntentDelaySeconds: 0,
     };
     constructor (existingElement, options) {
-        const exitIntentDelaySeconds = options.exitIntentDelaySeconds || 0;
+        const exitIntentDelaySeconds = (options.exitIntentDelaySeconds && options.exitIntentDelaySeconds >= 0 ? options.exitIntentDelaySeconds : undefined) ?? 0;
         if (exitIntentDelaySeconds < 0)
             throw new Error('armDelaySeconds must be a positive number.');
         try {

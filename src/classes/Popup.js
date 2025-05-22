@@ -1,3 +1,4 @@
+import './popup.css';
 
 class Popup {
   static defaultOptions = {
@@ -36,12 +37,14 @@ class Popup {
     },
     open: false,
   }
+
   static createDialogElement = function () {
     const dialog = document.createElement('dialog');
     dialog.id = "popup-" + (new Date()).getTime();
     dialog.classList.add("NextAfterPopup", "popup");
     return document.body.appendChild(dialog), dialog;
   }
+
   static createCloseButton = function (closeTarget) {
     function dismissPopup (target) {
       target = target || this || null;
@@ -58,11 +61,14 @@ class Popup {
     a.addEventListener('click', dismissPopup.bind(this, closeTarget));
     return a;
   };
+
   constructor (existingDialogElement, options = {}) {
-    this.dialog = existingDialogElement || Popup.createDialogElement();
     this.config = { ...Popup.defaultOptions, ...options };
+    this.config.design = { ...Popup.defaultOptions.design, ...this.config.design };
     this.content = { ...Popup.defaultOptions.content, ...this.config.content };
     this.actions = this.config.actions && this.config.actions.length > 0 ? this.config.actions : Popup.defaultOptions.actions;
+    
+    this.dialog = existingDialogElement || Popup.createDialogElement();
     this.dialog.innerHTML = `<div>
       <div class="na-column NextAfterPopup__content">
         <div class="na-block">
@@ -79,26 +85,21 @@ class Popup {
         </div>
       </div>
     </div>`;
-    this.content = {
-      'heading': this.dialog.querySelector('.NextAfterPopup__header') && this.content['heading']? 
+
+    this.blocks = {};
+    this.blocks['heading'] = this.dialog.querySelector('.NextAfterPopup__header') && this.content['headingHTML'] && this.content['headingHTML'].trim().length !== 0 ? // If the heading element exists and the content is not empty
                     (
-                      (this.dialog.querySelector('.NextAfterPopup__header').innerHTML = this.content['heading']),
-                      this.dialog.querySelector('.NextAfterPopup__header')
-                    ) :
-                    null,
-      'body':    this.dialog.querySelector('.NextAfterPopup__body') && this.content['body'] ? 
+                      (this.dialog.querySelector('.NextAfterPopup__header').innerHTML = this.content['headingHTML']), this.dialog.querySelector('.NextAfterPopup__header')
+                    ) : null;
+    this.blocks['body'] = this.dialog.querySelector('.NextAfterPopup__body') && this.content['bodyHTML'] && this.content['bodyHTML'].trim().length !== 0 ? // If the body element exists and the content is not empty
                     (
-                      (this.dialog.querySelector('.NextAfterPopup__body').innerHTML = this.content['body']),
-                      this.dialog.querySelector('.NextAfterPopup__body')
-                    ) :
-                    null,
-      'footer':  this.dialog.querySelector('.NextAfterPopup__footer') && this.content['footer']? 
+                      (this.dialog.querySelector('.NextAfterPopup__body').innerHTML = this.content['bodyHTML']), this.dialog.querySelector('.NextAfterPopup__body')
+                    ) : null;
+    this.blocks['footer'] = this.dialog.querySelector('.NextAfterPopup__footer') && this.content['footerHTML'] && this.content['footerHTML'].trim().length !== 0 ? 
                     (
-                      (this.dialog.querySelector('.NextAfterPopup__footer').innerHTML = this.content['footer']),
-                      this.dialog.querySelector('.NextAfterPopup__footer')
-                    ) :
-                    null,
-      'actions': this.dialog.querySelector('.NextAfterPopup__actions') && this.actions && this.actions.length > 0 ? 
+                      (this.dialog.querySelector('.NextAfterPopup__footer').innerHTML = this.content['footerHTML']), this.dialog.querySelector('.NextAfterPopup__footer')
+                    ) : null;
+    this.blocks['actions'] = this.dialog.querySelector('.NextAfterPopup__actions') && this.actions && this.actions.length > 0 ? 
                     (
                       (this.actions.forEach(({ type, textHTML, action = null, href = "javascript:void(0)" }, i) => {
                         const a = document.createElement('a'),
@@ -115,15 +116,11 @@ class Popup {
                         a.appendChild(button);
                         this.dialog.querySelector('.NextAfterPopup__actions').appendChild(a);
                       })),
-                      this.dialog.querySelector('.NextAfterPopup__actions')
+                      this.dialog.querySelector('.NextAfterPopup__actions') // return the actions element
                     ) :
-                    null,
-    };
-    this.buttons = Array.from(this.content.actions.children);
-    this.config.design = {
-      ...Popup.defaultOptions.design,
-      ...this.config.design
-    };
+                    null;
+    this.buttons = Array.from(this.blocks['actions'].children);
+
     const sheet = new CSSStyleSheet(),
           designConfig = this.config.design;
     sheet.replaceSync(`

@@ -35,9 +35,16 @@ const optimizationConfig = {
           mangle: {
             reserved: [
               "main", // Do not mangle the main function
+              "init", // Do not mangle the init function
+              "defaultOptions", // Do not mangle the defaultOptions property
             ],
           },
+          format: {
+            comments: false, // Remove comments
+          },
         },
+        extractComments: false, // Do not extract comments to a separate file
+        parallel: true, // Use multi-process parallel running to improve build speed
       }),
     ],
   }
@@ -162,6 +169,36 @@ module.exports = () => {
           ...optimizationConfig
         };
         webpackEntries.push(esmWebpackEntry);
+        
+        // JS entry for experiment variant
+        let jsWebpackEntry = {
+          entry: entries,
+          output: {
+            path: path.resolve(__dirname, "dist", "js", "experiments", experimentName, variantName),
+            filename: "[name].js",
+            libraryTarget: "var", // Plain variable assignment, no module system
+            library: "main", // Uses the 'main' as library name (alternatively, you can use the filename, but you would have to detect that in the code)
+            // code will be defined in 'var main = { ... }'
+          },
+          mode: "production",
+          ...cssModuleConfig,
+          plugins: [new webpack.DefinePlugin(envKeys)],
+          resolve: { ...resolveAliases },
+          ...optimizationConfig
+        };
+        webpackEntries.push(jsWebpackEntry);
+
+        // JS entry for experiment variant
+        let jsDevWebpackEntry = {
+          ...jsWebpackEntry,
+          output: {
+            ...jsWebpackEntry.output,
+            path: path.resolve(__dirname, "dist", "js-dev", "experiments", experimentName, variantName),
+            filename: "[name].js",
+          },
+          mode: "development",
+        };
+        webpackEntries.push(jsDevWebpackEntry);
       }
     });
   });
