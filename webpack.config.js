@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
 const fs = require("fs");
+const TerserPlugin = require("terser-webpack-plugin");
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const resolveAliases = {
   alias: {
@@ -22,6 +24,23 @@ const cssModuleConfig = {
       },
     ],
   },
+};
+
+const optimizationConfig = {
+  optimization: { // Added this optimization block
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          mangle: {
+            reserved: [
+              "main", // Do not mangle the main function
+            ],
+          },
+        },
+      }),
+    ],
+  }
 };
 
 module.exports = () => {
@@ -123,6 +142,7 @@ module.exports = () => {
           ...cssModuleConfig,
           plugins: [new webpack.DefinePlugin(envKeys)],
           resolve: { ...resolveAliases },
+          ...optimizationConfig
         };
         webpackEntries.push(umdWebpackEntry);
 
@@ -139,6 +159,7 @@ module.exports = () => {
           ...cssModuleConfig,
           plugins: [new webpack.DefinePlugin(envKeys)],
           resolve: { ...resolveAliases },
+          ...optimizationConfig
         };
         webpackEntries.push(esmWebpackEntry);
       }
