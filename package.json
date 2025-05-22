@@ -23,6 +23,7 @@
     "handlebars": "^4.7.8",
     "jsdom": "^26.1.0",
     "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
     "webpack": "^5.0.0",
     "webpack-cli": "^6.0.1"
   },

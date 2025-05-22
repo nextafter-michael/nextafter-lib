@@ -32,7 +32,7 @@ class Popup {
       popupButtonBorder: 'none', // used for the first CTA button in the popup
       popupButtonForegroundColor2: 'white', // used for the other CTA buttons in the popup
       popupButtonBackgroundColor2: 'black', // used for the other CTA buttons in the popup
-      popupButtonBorder: 'none', // used for the first CTA button in the popup
+      popupButtonBorder2: 'none', // used for the first CTA button in the popup
     },
     open: false,
   }
