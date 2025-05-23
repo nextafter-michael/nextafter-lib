@@ -36,6 +36,7 @@ class Popup {
       popupButtonBorder2: 'none', // used for the first CTA button in the popup
     },
     open: false,
+    openDelaySeconds: null,
   }
 
   static createDialogElement = function () {
@@ -67,6 +68,7 @@ class Popup {
     this.config.design = { ...Popup.defaultOptions.design, ...this.config.design };
     this.content = { ...Popup.defaultOptions.content, ...this.config.content };
     this.actions = this.config.actions && this.config.actions.length > 0 ? this.config.actions : Popup.defaultOptions.actions;
+    this.config.openAfterSeconds = this.config.openAfterSeconds || this.config.openDelaySeconds || null;
     
     this.dialog = existingDialogElement || Popup.createDialogElement();
     this.dialog.innerHTML = `<div>

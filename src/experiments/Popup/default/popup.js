@@ -188,10 +188,28 @@ const EXPERIMENT_VARIABLES = [
                 value: '#000000', // used for the other CTA buttons in the popup
             }
         ]
+    },
+    {
+        name: 'Already Open',
+        mapsTo: 'open',
+        type: 'bool',
+        unit: null,
+        value: false,
+        description: "If true, the popup will be shown immediately. If false, the popup will be hidden until the show() method is called.",
+    },
+    {
+        name: 'Open After Delay',
+        mapsTo: 'openDelaySeconds',
+        type: 'number',
+        unit: 'seconds',
+        value: null,
+        description: "If set, the popup will be shown after the specified delay.",
     }
 ];
 
 export default function main (options) {
+    if (!options.open || !options.openDelaySeconds)
+        console.warn(`Popup: 'open' or 'openDelaySeconds' is not set. Popup will not be shown.`);
     return new Popup(null, options);
 }
 

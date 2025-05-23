@@ -26,7 +26,7 @@ dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
   margin-block-end: 0;
   margin-block-end: 0.5rem;
 }
-.NextAfterPopup .NextAfterPopup__close-button {
+.NextAfterPopup__close-button {
   display: inline-block;
   position: absolute;
   top: 0;
@@ -44,17 +44,17 @@ dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
   background: transparent;
   transition: opacity 0.15s ease;
 }
-.NextAfterPopup .NextAfterPopup__close-button:hover { opacity: 0.85 }
-.NextAfterPopup .NextAfterPopup__close-button:active { opacity: 1.0 }
-.NextAfterPopup .NextAfterPopup__content { padding: 1rem }
-.NextAfterPopup .NextAfterPopup__actions {
+.NextAfterPopup__close-button:hover { opacity: 0.85 }
+.NextAfterPopup__close-button:active { opacity: 1.0 }
+.NextAfterPopup__content { padding: 1rem }
+.NextAfterPopup__actions {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   margin: 1rem 0 0;
 }
 .NextAfterPopup a:has(button) { display: contents }
-.NextAfterPopup .NextAfterPopup__action-button {
+.NextAfterPopup__action-button {
   display: block;
   width: 100%;
   max-width: 50%;
@@ -65,13 +65,13 @@ dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
   transition: all 0.15s ease-in-out, scale 0.2s ease;
 }
 /* .NextAfterPopup .NextAfterPopup__action-button:hover { scale: 102% } */
-.NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button {
+.NextAfterPopup__action-button {
   color: var(--popup-button-fgColor);
   background-color: var(--popup-button-bgColor);
   border: var(--popup-button-border);
   border-radius: var(--popup-button-cornerRadius);
 }
-.NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button {
+.NextAfterPopup__action-button {
   display: block;
   width: 100%;
   max-width: 50%;
@@ -84,19 +84,19 @@ dialog.NextAfterPopup::backdrop { background: var(--popup-backdrop) }
 /*   outline-color: var(--popup-button-bgColor); */
 }
 @supports (color-mix(in srgb, var(--popup-button-bgColor), black 10%)) {
-  .NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor), black 10%) }
-  .NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor2), black 10%) }
+  .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor), black 10%) }
+  a:not(:first-child) .NextAfterPopup__action-button:hover { background-color: color-mix(in srgb, var(--popup-button-bgColor2), black 10%) }
 }
 @supports (not color-mix(in srgb, var(--popup-button-bgColor), black 10%)) and (filter: brightness(0.9)) {
-  .NextAfterPopup .NextAfterPopup__actions a .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
-  .NextAfterPopup .NextAfterPopup__actions a:not(:first-child) .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
+  .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
+  a:not(:first-child) .NextAfterPopup__action-button:hover { filter: brightness(0.9) }
 }
 @media only screen and (max-width: 480px) {
-  .NextAfterPopup .NextAfterPopup__actions {
+  .NextAfterPopup__actions {
     display: flex;
     flex-direction: column;
   }
-  .NextAfterPopup .NextAfterPopup__action-button {
+  .NextAfterPopup__action-button {
     max-width: 100%;
   }
 }
